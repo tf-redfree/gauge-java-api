@@ -9,19 +9,40 @@ of those actions
 No Response is returned when doing a POST to the /no_response endpoint
 ----------------------------------------------------------------------
 
-* Post to the "no_response" endpoint
-* Then the response will be "No Content"
-* The response code should be "204"
+* Make a POST request to "/no_response"
+* Assert that the http response status text is "No Content"
+* Assert that the http response code is "204"
 
 OK is returned when doing a GET to the /no_response endpoint
 ------------------------------------------------------------
 
-* Get to the "no_response" endpoint
-* Then the response will be "OK"
-* The response code should be "200"
+* Make a GET request to "/no_response"
+* Assert that the http response status text is "OK"
+* Assert that the http response code is "200"
+
+OK is returned when doing a GET to the /no_response/last endpoint
+------------------------------------------------------------
+
+* Make a GET request to "/no_response/last"
+* Assert that the http response status text is "OK"
+* Assert that the http response code is "200"
 
 Details of the last response is returned when doing a GET to /no_response/last endpoint
 ---------------------------------------------------------------------------------------
 
-* Get to the "no_response/last" endpoint
-// Implement a step that checks the response contains the correct details
+* Update the POSTDATA in "/no_response" with the value "FeeFiFoFum"
+* Make a GET request to "/no_response/last"
+* Assert that the POSTDATA value is "FeeFiFoFum"
+
+
+
+The lastUpdated timestamp is updating when new data is POSTed to /no_response
+-----------------------------------------------------------------------------
+
+* Make a POST request to "/no_response"
+* Make a GET request to "/no_response/last"
+* Save the current timestamp
+* Pause execution for "1050"ms
+* Make a POST request to "/no_response"
+* Make a GET request to "/no_response/last"
+* Assert that timestamp is different to the saved timestamp
