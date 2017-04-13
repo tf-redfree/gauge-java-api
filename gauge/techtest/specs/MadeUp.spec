@@ -21,7 +21,7 @@ OK is returned when doing a GET to the /made_up endpoint
 * Assert that the http response code is "404"
 
 
-OK is returned when doing a GET to the /does/not/exist endpoint
+POSTed JSON can be retrieved on /does/not/exist endpoint
 ------------------------------------------------------------
 
 * Make a GET request to "/does/not/exist"

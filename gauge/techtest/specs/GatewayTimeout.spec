@@ -27,12 +27,19 @@ OK is returned when doing a GET to the /gateway_timeout/last endpoint
 * Assert that the http response status text is "OK"
 * Assert that the http response code is "200"
 
-Details of the last response is returned when doing a GET to /gateway_timeout/last endpoint
+POSTed JSON can be retrieved on /gateway_timeout/last endpoint
 -------------------------------------------------------------------------------------------
 
-* Update the POSTDATA in "/gateway_timeout" with the value "FeeFiFoFum"
+* Update the POSTDATA in "/gateway_timeout" with the json value "FeeFiFoFum"
 * Make a GET request to "/gateway_timeout/last"
-* Assert that the POSTDATA value is "FeeFiFoFum"
+* Assert that the POSTDATA JSON value is "FeeFiFoFum"
+
+POSTed Input Form can be retrieved on GET to /gateway_timeout/last endpoint
+---------------------------------------------------------------------------------------
+
+* Update the POSTDATA in "/gateway_timeout" with the input form value "input=test"
+* Make a GET request to "/gateway_timeout/last"
+* Assert that the POSTDATA value is "input=test"
 
 The lastUpdated timestamp is updating when new data is POSTed to /gateway_timeout
 -----------------------------------------------------------------------------

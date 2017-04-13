@@ -20,12 +20,19 @@ OK is returned when doing a GET to the /internal_server_error endpoint
 
 
 
-Details of the last response is returned when doing a GET to /internal_server_error/last endpoint
+POSTed JSON can be retrieved on /internal_server_error/last endpoint
 -------------------------------------------------------------------------------------------
 
-* Update the POSTDATA in "/internal_server_error" with the value "FeeFiFoFum"
+* Update the POSTDATA in "/internal_server_error" with the json value "FeeFiFoFum"
 * Make a GET request to "/internal_server_error/last"
-* Assert that the POSTDATA value is "FeeFiFoFum"
+* Assert that the POSTDATA JSON value is "FeeFiFoFum"
+
+POSTed Input Form can be retrieved on GET to /internal_server_error/last endpoint
+---------------------------------------------------------------------------------------
+
+* Update the POSTDATA in "/internal_server_error" with the input form value "input=test"
+* Make a GET request to "/internal_server_error/last"
+* Assert that the POSTDATA value is "input=test"
 
 The lastUpdated timestamp is updating when new data is POSTed to /internal_server_error
 -----------------------------------------------------------------------------

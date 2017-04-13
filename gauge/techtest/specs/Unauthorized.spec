@@ -27,12 +27,20 @@ OK is returned when doing a GET to /unauthorized/last endpoint
 * Assert that the http response status text is "OK"
 * Assert that the http response code is "200"
 
-Details of the last response is returned when doing a GET to /unauthorized/last endpoint
+POSTed JSON can be retrieved on /unauthorized/last endpoint
 ----------------------------------------------------------------------------------------
 
-* Update the POSTDATA in "/unauthorized" with the value "FeeFiFoFum"
+* Update the POSTDATA in "/unauthorized" with the json value "FeeFiFoFum"
 * Make a GET request to "/unauthorized/last"
-* Assert that the POSTDATA value is "FeeFiFoFum"
+* Assert that the POSTDATA JSON value is "FeeFiFoFum"
+
+
+POSTed Input Form can be retrieved on GET to /unauthorized/last endpoint
+---------------------------------------------------------------------------------------
+
+* Update the POSTDATA in "/unauthorized" with the input form value "input=test"
+* Make a GET request to "/unauthorized/last"
+* Assert that the POSTDATA value is "input=test"
 
 
 

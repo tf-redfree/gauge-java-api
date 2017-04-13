@@ -31,16 +31,16 @@ public class Assertions {
         Assert.assertEquals(expectedResponse, httpResponseStatusText);
     }
 
-    @Step("Assert that the POSTDATA value is <value>")
-    public void assertPostDataValueIs(String value) {
-    	DataStore dataStore = DataStoreFactory.getScenarioDataStore();
-        HttpResponse<String> httpResponse = (HttpResponse<String>)dataStore.get("httpResponse");
+    @Step("Assert that the POSTDATA JSON value is <value>")
+    public void assertPostDataJSONValueIs(String value) {
+        this.assertPostDataStringValueIs("{\"test\":\"" + value.replace("\"", "\\\"") + "\"}");
+    }
 
-        JSONObject response = new JSONObject(httpResponse.getBody());
-        String outerEleName = response.keys().next();
-        JSONArray responseData = response.getJSONArray(outerEleName);
-        String bodyReceived = responseData.getJSONObject(1).get("bodyReceived").toString();
-        Assert.assertEquals(bodyReceived, "{\"test\":\"" + value.replace("\"", "\\\"") + "\"}");
+    @Step("Assert that the POSTDATA value is <value>")
+    public void assertPostDataStringValueIs(String value) {
+    	Helper h = new Helper();
+    	String receivedRequest = h.getReceivedRequest();
+    	Assert.assertEquals(receivedRequest, value); 
     }
 
     @Step("Assert that timestamp is different to the saved timestamp")

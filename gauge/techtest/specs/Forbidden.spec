@@ -27,12 +27,19 @@ OK is returned when doing a GET to the /forbidden/last endpoint
 * Assert that the http response status text is "OK"
 * Assert that the http response code is "200"
 
-Details of the last response is returned when doing a GET to /forbidden/last endpoint
+POSTed JSON can be retrieved on GET to /forbidden/last endpoint
 -------------------------------------------------------------------------------------------
 
-* Update the POSTDATA in "/forbidden" with the value "TestForbidden"
+* Update the POSTDATA in "/forbidden" with the json value "TestForbidden"
 * Make a GET request to "/forbidden/last"
-* Assert that the POSTDATA value is "TestForbidden"
+* Assert that the POSTDATA JSON value is "TestForbidden"
+
+POSTed Input Form can be retrieved on GET to /forbidden/last endpoint
+---------------------------------------------------------------------------------------
+
+* Update the POSTDATA in "/forbidden" with the input form value "input=test"
+* Make a GET request to "/forbidden/last"
+* Assert that the POSTDATA value is "input=test"
 
 The lastUpdated timestamp is updating when new data is POSTed to /forbidden
 -----------------------------------------------------------------------------

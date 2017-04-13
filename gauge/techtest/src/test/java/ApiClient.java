@@ -9,7 +9,6 @@ import com.thoughtworks.gauge.datastore.DataStoreFactory;
 
 public class ApiClient {
 
-    @Step("Make a GET request to <endpoint>")
     public void makeGetRequestToEndpoint(String endpoint) {
         DataStore dataStore = DataStoreFactory.getScenarioDataStore();
         HttpResponse<String> httpResponse;
@@ -34,22 +33,16 @@ public class ApiClient {
         }
     }
 
-    @Step("Make a POST request to <endpoint>")
-    public void makePostRequestToEndpoint(String endpoint) {
-        this.updatePostDataForEndpoint(endpoint, "123");
-    }
-
-    @Step("Update the POSTDATA in <endpoint> with the value <value>")
-    public void updatePostDataForEndpoint(String endpoint, String value) {
+    public void updatePostDataForEndpoint(String endpoint, String value, String contentType) {
         DataStore dataStore = DataStoreFactory.getScenarioDataStore();
         HttpResponse<String> httpResponse;
         String url = "http://localhost:3000" + endpoint;
         Gauge.writeMessage(url);
         try {
             httpResponse = Unirest.post(url)
-                    .header("Content-Type", "application/json")
+                    .header("Content-Type", contentType)
                     .header("Accept", "*/*")
-                    .body("{\"test\": \"" + value + "\"}")
+                    .body(value)
                     .asString();
             dataStore.put("httpResponse", httpResponse);
             Integer httpResponseCode = httpResponse.getStatus();

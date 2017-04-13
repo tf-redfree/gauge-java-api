@@ -27,13 +27,20 @@ OK is returned when doing a GET to the /no_response/last endpoint
 * Assert that the http response status text is "OK"
 * Assert that the http response code is "200"
 
-Details of the last response is returned when doing a GET to /no_response/last endpoint
+POSTed JSON can be retrieved on /no_response/last endpoint
 ---------------------------------------------------------------------------------------
 
-* Update the POSTDATA in "/no_response" with the value "FeeFiFoFum"
+* Update the POSTDATA in "/no_response" with the json value "FeeFiFoFum"
 * Make a GET request to "/no_response/last"
-* Assert that the POSTDATA value is "FeeFiFoFum"
+* Assert that the POSTDATA JSON value is "FeeFiFoFum"
 
+
+POSTed Input Form can be retrieved on GET to /no_response/last endpoint
+---------------------------------------------------------------------------------------
+
+* Update the POSTDATA in "/no_response" with the input form value "input=test"
+* Make a GET request to "/no_response/last"
+* Assert that the POSTDATA value is "input=test"
 
 
 The lastUpdated timestamp is updating when new data is POSTed to /no_response

@@ -38,4 +38,15 @@ public class Helper {
         return lastUpdated;
 	}
 
+	public String getReceivedRequest() {
+		DataStore dataStore = DataStoreFactory.getScenarioDataStore();
+        HttpResponse<String> httpResponse = (HttpResponse<String>)dataStore.get("httpResponse");
+
+        JSONObject response = new JSONObject(httpResponse.getBody());
+        String outerEleName = response.keys().next();
+        JSONArray responseData = response.getJSONArray(outerEleName);
+        String bodyReceived = responseData.getJSONObject(1).get("bodyReceived").toString();
+        return bodyReceived;
+	}
+
 }
